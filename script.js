@@ -1,12 +1,13 @@
 const botaoEntrar = document.querySelector('.botaoEntrar');
+const main1 = document.getElementById('main1');
 const evaluationForm = document.getElementById('evaluation-form');
-const formOptions = document.getElementById('form-options');
 const inputName = document.getElementById('input-name');
 const inputLastName = document.getElementById('input-lastname');
 const inputEmail = document.getElementById('input-email');
 const inputHouse = document.getElementById('house');
 const familyOptions = document.getElementById('family-options').children;
 let whatYourFamily;
+const contentsChoosen = [];
 const contentOption = document.getElementsByClassName('content-option');
 const rateOptions = document.getElementById('label-rate').children;
 let rate;
@@ -51,22 +52,30 @@ checa[0].onclick = function checkbox() {
 botaoEnviar.addEventListener('click', (event) => {
   event.preventDefault();
   evaluationForm.style.display = 'none';
-  let contentsChoosen = []; 
-  for(let i of familyOptions) {
-    let e = i.children[0];
-    if(e.checked) {
-        whatYourFamily = e.value;
+  for (let i = 0; i < familyOptions.length; i += 1) {
+    const e = familyOptions[i].children[0];
+    if (e.checked) {
+      whatYourFamily = e.value;
+      console.log(whatYourFamily);
     }
   }
-  for(let i of contentOption) {
-    let e = i.children[0];
-    if(e.checked) {contentsChoosen.push(` ${e.value}`)}
-  }
+});
 
-  for(let i = 1; i < rateOptions.length; i +=1) {
-    let e = rateOptions[i].children[0] 
-    if(e.checked) {
-        rate = e.value;
+botaoEnviar.addEventListener('click', () => {
+  for (let i = 0; i < contentOption.length; i += 1) {
+    const e = contentOption[i].children[0];
+    if (e.checked) {
+      contentsChoosen.push(` ${e.value}`);
+    }
+  }
+  console.log(contentsChoosen);
+});
+
+botaoEnviar.addEventListener('click', () => {
+  for (let i = 1; i < rateOptions.length; i += 1) {
+    const e = rateOptions[i].children[0];
+    if (e.checked) {
+      rate = e.value;
     }
   }
   newParagraph.innerText = `Nome: ${inputName.value} ${inputLastName.value}
@@ -77,7 +86,5 @@ botaoEnviar.addEventListener('click', (event) => {
   Avaliação: ${rate}
   Observações: ${textArea.value}`;
   newForm.appendChild(newParagraph);
-  // evaluationForm.parentElement.replaceChild(newForm, evaluationForm);  
   main1.appendChild(newForm);
-  
 });
