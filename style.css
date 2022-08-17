@@ -190,17 +190,25 @@ main {
   margin-top: 25px;
 }
 
-#textarea-coment {
+#textarea-counter {
   display: flex;
+  flex-direction: column;
+}
+
+#textarea {
+  display: flex;
+  height: 120px;
   width: 100%;
   resize: none;
 }
 
 #counter {
-  position: fixed;
+  display: flex;
+  align-self: flex-end;
+  position: relative;
+  bottom: 18%;
+  width: 6%;
   z-index: 999;
-  margin-top: -32px;
-  margin-left: 645px;
   cursor: pointer;
   font-size: 20px;
 }
