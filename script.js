@@ -1,6 +1,6 @@
 const botaoEntrar = document.querySelector('.botaoEntrar');
 const evaluationForm = document.getElementById('evaluation-form');
-// const formOptions = document.getElementById('form-options');
+const formOptions = document.getElementById('form-options');
 const inputName = document.getElementById('input-name');
 const inputLastName = document.getElementById('input-lastname');
 const inputEmail = document.getElementById('input-email');
@@ -48,11 +48,14 @@ checa[0].onclick = function checkbox() {
   bt.disabled = !cont;
 };
 
-botaoEnviar.addEventListener('click', () => {
+botaoEnviar.addEventListener('click', (event) => {
+  event.preventDefault();
+  evaluationForm.style.display = 'none';
   let contentsChoosen = []; 
   for(let i of familyOptions) {
-    if(i.children[0].checked) {
-        whatYourFamily = i.children[0].value;
+    let e = i.children[0];
+    if(e.checked) {
+        whatYourFamily = e.value;
     }
   }
   for(let i of contentOption) {
@@ -74,6 +77,7 @@ botaoEnviar.addEventListener('click', () => {
   Avaliação: ${rate}
   Observações: ${textArea.value}`;
   newForm.appendChild(newParagraph);
-  evaluationForm .parentElement.replaceChild(newForm, evaluationForm );
-  evaluationForm .style.visibility = 'hidden';
+  // evaluationForm.parentElement.replaceChild(newForm, evaluationForm);  
+  main1.appendChild(newForm);
+  
 });
